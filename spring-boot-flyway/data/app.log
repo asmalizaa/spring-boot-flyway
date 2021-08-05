@@ -1,0 +1,17 @@
+/*C22*/SET SCHEMA PUBLIC
+CREATE TABLE "PUBLIC"."schema_version" (\u000a    "version_rank" INT NOT NULL,\u000a    "installed_rank" INT NOT NULL,\u000a    "version" VARCHAR(50) NOT NULL,\u000a    "description" VARCHAR(200) NOT NULL,\u000a    "type" VARCHAR(20) NOT NULL,\u000a    "script" VARCHAR(1000) NOT NULL,\u000a    "checksum" INT,\u000a    "installed_by" VARCHAR(100) NOT NULL,\u000a    "installed_on" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,\u000a    "execution_time" INT NOT NULL,\u000a    "success" BIT NOT NULL\u000a)
+ALTER TABLE "PUBLIC"."schema_version" ADD CONSTRAINT "schema_version_pk" PRIMARY KEY ("version")
+CREATE INDEX "PUBLIC"."schema_version_vr_idx" ON "PUBLIC"."schema_version" ("version_rank")
+CREATE INDEX "PUBLIC"."schema_version_ir_idx" ON "PUBLIC"."schema_version" ("installed_rank")
+CREATE INDEX "PUBLIC"."schema_version_s_idx" ON "PUBLIC"."schema_version" ("success")
+/*C21*/SET SCHEMA PUBLIC
+create table customer (\u000a  id int identity primary key,\u000a  name varchar(255) not null,\u000a  contact_name varchar (255) not null,\u000a  email varchar (255) not null,\u000a  phone varchar (255) not null\u000a)
+INSERT INTO CUSTOMER VALUES(0,'Coca Cola','John Doe','john.doe@cocacola.com','202-555-0143')
+INSERT INTO CUSTOMER VALUES(1,'Dell','Bob Frapples','bob.frapples@dell.com','202-555-0180')
+INSERT INTO CUSTOMER VALUES(2,'Apple','Barb Ackue','barb.ackue@apple.com','202-555-0128')
+INSERT INTO CUSTOMER VALUES(3,'Google','Sue Vaneer','sue.vaneer@google.com','202-555-0174')
+INSERT INTO CUSTOMER VALUES(4,'FedEx','Robin Banks','robin.banks@fedex.com','202-555-0146')
+INSERT INTO CUSTOMER VALUES(5,'Salesforce','Zack Lee','zack.lee@salesforce.com','202-555-0122')
+COMMIT
+/*C22*/INSERT INTO "schema_version" VALUES(1,1,'1','customers','SQL','V1__customers.sql',-681040195,'SA','2021-08-05 15:57:57.285000',7,'1')
+COMMIT
